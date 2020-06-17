@@ -1,10 +1,13 @@
 use std::fs::File;
 use std::io::Read;
 
+mod chip8;
+mod memory;
+
 fn pretty_hex(value: &u8) -> String {
     let mut x = format!("{:x}", value);
     if x.len() < 4 {
-        for _ in 0..4-x.len() {
+        for _ in 0..4 - x.len() {
             x = format!("0{}", x);
         }
     }

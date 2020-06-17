@@ -1,15 +1,15 @@
+/// 4096 u8 integers
 pub struct Ram {
-    mem: [u8; 4096]
+    mem: [u8; 4096],
 }
 
 impl Ram {
-
     pub fn new() -> Ram {
         // Write zeros to 512 bytes
-        Ram { mem: [0, 4096] };
+        let mut ram = Ram { mem: [0; 4096] };
 
         // Init memory with predefined sprites 0 to F
-        let sprites = [[u8; 5]] = [
+        let sprites: [[u8; 5]; 16] = [
             [0xF0, 0x90, 0x90, 0x90, 0xF0], // 0
             [0x20, 0x60, 0x20, 0x20, 0x70], // 1
             [0xF0, 0x10, 0xF0, 0x80, 0xF0], // 2
@@ -27,6 +27,16 @@ impl Ram {
             [0xF0, 0x80, 0xF0, 0x80, 0xF0], // E
             [0xF0, 0x80, 0xF0, 0x80, 0x80], // F
         ];
+
+        let mut i = 0;
+        for sprite in &sprites {
+            for ch in sprite {
+                ram.mem[i] = *ch;
+                i += 1;
+            }
+        }
+
+        ram
     }
 
     pub fn write_byte(&mut self, address: u16, value: u8) {
