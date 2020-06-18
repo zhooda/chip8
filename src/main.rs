@@ -1,3 +1,4 @@
+use chip8::Chip8;
 use std::fs::File;
 use std::io::Read;
 
@@ -25,5 +26,6 @@ fn main() {
     let mut data = Vec::<u8>::new();
     file.read_to_end(&mut data);
 
-    dump(&data);
+    let mut chip = Chip8::new();
+    chip.load_rom(&data);
 }

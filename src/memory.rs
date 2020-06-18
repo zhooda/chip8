@@ -1,4 +1,3 @@
-/// 4096 u8 integers
 pub struct Ram {
     mem: [u8; 4096],
 }
